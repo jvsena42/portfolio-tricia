@@ -92,7 +92,7 @@ a {
 /* H0 - Page titles (Cinzel Decorative) */
 .h0, h1.page-title {
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 110%;
   letter-spacing: 0.05em;
