@@ -395,6 +395,26 @@ a {
   font-style: italic;
 }
 
+/* Image-based tarot cards */
+.tarot-card--img {
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.tarot-card--img::before,
+.tarot-card--img::after {
+  display: none;
+}
+
+.tarot-card--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
 /* ===========================
    PROJECT SECTIONS (Detail Pages)
    =========================== */
@@ -428,6 +448,18 @@ a {
 .project-images .placeholder-img {
   border-radius: var(--radius-sm);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.project-images img.book-cover,
+.intro-images img.book-cover {
+  width: 140px;
+  height: auto;
+}
+
+.project-images img.brand-logo {
+  width: 180px;
+  height: auto;
+  border-radius: var(--radius-md);
 }
 
 .project-text h2 {
@@ -647,6 +679,15 @@ a {
   .placeholder-img.book-cover {
     width: 170px;
     height: 255px;
+  }
+
+  .project-images img.book-cover,
+  .intro-images img.book-cover {
+    width: 170px;
+  }
+
+  .project-images img.brand-logo {
+    width: 220px;
   }
 }
 
