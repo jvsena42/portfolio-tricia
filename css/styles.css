@@ -1,0 +1,901 @@
+/* ===========================
+   DESIGN TOKENS
+   =========================== */
+:root {
+  /* Colors */
+  --color-purple-deep: #2D0A4E;
+  --color-purple-dark: #25063a;
+  --color-navy: #1a1a3e;
+  --color-navy-light: #2a2a5e;
+  --color-gold: #c9a84c;
+  --color-gold-dark: #a8893a;
+  --color-gold-light: #e8d5a3;
+  --color-beige: #d4b896;
+  --color-beige-light: #e8d4b8;
+  --color-white: #ffffff;
+  --color-text-dark: #2D0A4E;
+  --color-text-light: #cccccc;
+
+  /* Gold gradient background for content pages */
+  --bg-gold-gradient: linear-gradient(
+    180deg,
+    #c9a84c 0%,
+    #d4b896 30%,
+    #e8d5a3 60%,
+    #d4b896 100%
+  );
+
+  /* Typography */
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-subheading: 'Faustina', serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 50px;
+  --radius-circle: 50%;
+}
+
+/* ===========================
+   RESET & BASE
+   =========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0;
+  color: var(--color-text-dark);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+
+/* H0 - Page titles (Cinzel Decorative) */
+.h0, h1.page-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* H1 - Section titles (Cormorant Garamond) */
+.h1, h1.section-title {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0.03em;
+}
+
+/* H2 - Subsection titles (Faustina) */
+.h2, h2 {
+  font-family: var(--font-subheading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: 0.02em;
+}
+
+/* H3 - Small headings (Faustina) */
+.h3, h3 {
+  font-family: var(--font-subheading);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0.01em;
+}
+
+/* Body text */
+.body-text, p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0;
+}
+
+/* ===========================
+   LAYOUT UTILITIES
+   =========================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-xl) 0;
+}
+
+/* ===========================
+   PAGE BACKGROUNDS
+   =========================== */
+.bg-purple {
+  background-color: var(--color-purple-deep);
+  color: var(--color-white);
+}
+
+.bg-gold {
+  background: var(--bg-gold-gradient);
+  color: var(--color-text-dark);
+  min-height: 100vh;
+}
+
+/* ===========================
+   PAGE HEADER (Detail Pages)
+   =========================== */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-md);
+  position: relative;
+  border-bottom: 2px solid var(--color-purple-deep);
+}
+
+.page-header .back-btn {
+  position: absolute;
+  left: var(--space-md);
+}
+
+.page-header .page-title {
+  text-align: center;
+  color: var(--color-purple-deep);
+}
+
+.page-header .mini-card {
+  position: absolute;
+  right: var(--space-md);
+  width: 48px;
+  height: 72px;
+  background: var(--color-navy);
+  border: 1px solid var(--color-gold);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page-header .mini-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===========================
+   BACK BUTTON
+   =========================== */
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-circle);
+  border: 2px solid var(--color-text-dark);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--color-text-dark);
+  font-size: 20px;
+}
+
+.back-btn:hover {
+  background: var(--color-text-dark);
+  color: var(--color-white);
+  transform: scale(1.05);
+}
+
+.back-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ===========================
+   GOLDEN BUTTON
+   =========================== */
+.golden-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.golden-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+}
+
+/* Dark purple button variant */
+.btn-dark {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--color-purple-deep);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+  background: var(--color-navy);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 10, 78, 0.3);
+}
+
+/* ===========================
+   TAROT CARDS
+   =========================== */
+.tarot-card {
+  position: relative;
+  width: 240px;
+  height: 380px;
+  background: var(--color-navy);
+  border: 2px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+
+/* Starfield background */
+.tarot-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Gold ornamental inner border */
+.tarot-card::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: calc(var(--radius-md) - 4px);
+  pointer-events: none;
+}
+
+.tarot-card:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(201, 168, 76, 0.2);
+  border-color: var(--color-gold-light);
+}
+
+.tarot-card__title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.tarot-card__icon {
+  position: relative;
+  z-index: 1;
+  font-size: 64px;
+  color: var(--color-gold-light);
+  opacity: 0.9;
+}
+
+.tarot-card__subtitle {
+  font-family: var(--font-subheading);
+  font-size: 14px;
+  color: var(--color-gold-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+}
+
+/* ===========================
+   PROJECT SECTIONS (Detail Pages)
+   =========================== */
+.project-section {
+  padding: var(--space-xl) 0;
+}
+
+.project-section + .project-section {
+  border-top: 1px solid rgba(45, 10, 78, 0.1);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.project-grid.reverse .project-images {
+  order: -1;
+}
+
+.project-images {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.project-images img,
+.project-images .placeholder-img {
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.project-text h2 {
+  color: var(--color-purple-deep);
+  margin-bottom: var(--space-xs);
+}
+
+.project-text h3 {
+  color: var(--color-purple-deep);
+  opacity: 0.7;
+  margin-bottom: var(--space-sm);
+  font-style: italic;
+}
+
+.project-text p {
+  color: var(--color-text-dark);
+  opacity: 0.85;
+  margin-bottom: var(--space-sm);
+}
+
+/* Placeholder images for projects */
+.placeholder-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-subheading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-white);
+  text-align: center;
+  padding: var(--space-sm);
+}
+
+.placeholder-img.book-cover {
+  width: 140px;
+  height: 210px;
+  background: linear-gradient(145deg, var(--color-purple-deep), var(--color-navy));
+}
+
+.placeholder-img.brand-logo {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(145deg, var(--color-beige), var(--color-gold-light));
+  color: var(--color-text-dark);
+  border-radius: var(--radius-md);
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+.footer {
+  padding: var(--space-md) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  font-size: 14px;
+  color: var(--color-text-dark);
+  border-top: 1px solid rgba(45, 10, 78, 0.15);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer a {
+  transition: opacity 0.3s ease;
+}
+
+.footer a:hover {
+  opacity: 0.7;
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-slide-left.anim-visible,
+.anim-slide-right.anim-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-scale.anim-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delay utility */
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.3s; }
+.anim-delay-4 { transition-delay: 0.4s; }
+.anim-delay-5 { transition-delay: 0.5s; }
+
+/* Breathing/pulse for admit-one button */
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.breathing {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Page entrance */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-entrance {
+  animation: pageFadeIn 0.6s ease forwards;
+}
+
+/* ===========================
+   RESPONSIVE - TABLET (768px+)
+   =========================== */
+@media (min-width: 768px) {
+  .h0, h1.page-title {
+    font-size: 60px;
+  }
+
+  .h1, h1.section-title {
+    font-size: 50px;
+  }
+
+  .h2, h2 {
+    font-size: 36px;
+  }
+
+  .h3, h3 {
+    font-size: 24px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-grid.reverse .project-images {
+    order: 1;
+  }
+
+  .project-grid.reverse .project-text {
+    order: 0;
+  }
+
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .tarot-card {
+    width: 260px;
+    height: 400px;
+  }
+}
+
+/* ===========================
+   RESPONSIVE - DESKTOP (1024px+)
+   =========================== */
+@media (min-width: 1024px) {
+  .h0, h1.page-title {
+    font-size: 72px;
+  }
+
+  .h1, h1.section-title {
+    font-size: 60px;
+  }
+
+  .h2, h2 {
+    font-size: 42px;
+  }
+
+  .h3, h3 {
+    font-size: 26px;
+  }
+
+  .tarot-card {
+    width: 280px;
+    height: 440px;
+  }
+
+  .tarot-card__icon {
+    font-size: 80px;
+  }
+
+  .placeholder-img.book-cover {
+    width: 170px;
+    height: 255px;
+  }
+}
+
+/* ===========================
+   HERO PAGE STYLES
+   =========================== */
+.hero-page {
+  background-color: var(--color-purple-deep);
+  color: var(--color-white);
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--space-lg) 6%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 100%;
+}
+
+.hero-title-line {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.15;
+  min-height: 44px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.hero-title-line:nth-child(2) {
+  padding-left: 20px;
+}
+
+.hero-title-line:nth-child(3) {
+  padding-left: 40px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-subheading);
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: var(--space-md);
+  color: var(--color-text-light);
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+/* Word animation */
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  margin-right: 10px;
+}
+
+.word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Admit One ticket/button */
+.admit-one-btn {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  opacity: 0;
+  transition: opacity 1.5s ease, transform 1s ease;
+  transform: translateY(20px);
+}
+
+.admit-one-btn.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.admit-one-btn img {
+  width: 220px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.admit-one-btn img:hover {
+  transform: scale(1.05);
+}
+
+/* Hero photo */
+.hero-photo {
+  position: absolute;
+  right: -100px;
+  top: 0;
+  height: 100vh;
+  width: 55%;
+  opacity: 0;
+  transition: opacity 2s ease, transform 2s ease;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  pointer-events: none;
+}
+
+.hero-photo.reveal {
+  opacity: 1;
+}
+
+.hero-photo img {
+  height: 120%;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  object-position: left center;
+}
+
+/* ===========================
+   PORTFOLIO HUB STYLES
+   =========================== */
+.portfolio-hub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-xl) var(--space-md);
+  gap: var(--space-xl);
+}
+
+.portfolio-hub__title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-purple-deep);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cards-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ===========================
+   INTRO SECTION (Cover Design desktop)
+   =========================== */
+.intro-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-xl) 0;
+  align-items: center;
+}
+
+.intro-text {
+  max-width: 500px;
+}
+
+.intro-text p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.intro-images {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* ===========================
+   RESPONSIVE - TABLET (768px+)
+   =========================== */
+@media (min-width: 768px) {
+  .hero-content {
+    max-width: 55%;
+  }
+
+  .hero-title-line {
+    font-size: 52px;
+    min-height: 62px;
+  }
+
+  .hero-title-line:nth-child(2) {
+    padding-left: 40px;
+  }
+
+  .hero-title-line:nth-child(3) {
+    padding-left: 80px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .cards-row {
+    flex-direction: row;
+    gap: var(--space-lg);
+  }
+
+  .intro-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===========================
+   RESPONSIVE - DESKTOP (1024px+)
+   =========================== */
+@media (min-width: 1024px) {
+  .hero {
+    padding: 0 8%;
+  }
+
+  .hero-content {
+    max-width: 50%;
+  }
+
+  .hero-title-line {
+    font-size: 64px;
+    min-height: 76px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+  }
+
+  .portfolio-hub__title {
+    font-size: 48px;
+  }
+}
+
+/* ===========================
+   MOBILE HERO ADJUSTMENTS
+   =========================== */
+@media (max-width: 767px) {
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-title-line:nth-child(2),
+  .hero-title-line:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .hero-photo {
+    opacity: 0.15 !important;
+    right: -150px;
+    width: 80%;
+  }
+
+  .hero-photo.reveal {
+    opacity: 0.15;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .admit-one-btn {
+    display: block;
+    text-align: center;
+  }
+}

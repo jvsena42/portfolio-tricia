@@ -1,133 +1,65 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trícia Linewberg – Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0; padding: 0;
-            background: #25063a;
-            font-family: 'Cinzel Decorative', serif;
-            color: white;
-            overflow: hidden; /* Evita barras de rolagem */
-        }
-
-        .hero {
-            position: relative;
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
-            padding: 0 8%;
-        }
-
-        /* Lado do Texto */
-        .content { 
-            position: relative;
-            z-index: 10; /* Garante que o texto fique por cima da foto */
-            max-width: 50%; 
-        }
-
-        .title-line { font-size: 60px; margin: 0; line-height: 1.1; min-height: 70px; }
-        .subtitle { font-size: 22px; margin-top: 20px; color: #ccc; line-height: 1.4; }
-
-        /* Efeito de Fade nas palavras */
-        .word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            margin-right: 12px;
-        }
-        .word.visible { opacity: 1; transform: translateY(0); }
-
-        /* Lado da Foto (Efeito Figma) */
-        .photo-container {
-            position: absolute;
-            right: -150px; /* Joga parte do rosto para fora como no Figma */
-            top: 0;
-            height: 100vh;
-            width: 60%;
-            opacity: 0;
-            transition: opacity 2.5s ease, transform 2.5s ease;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            pointer-events: none; /* Para não atrapalhar cliques no texto */
-        }
-
-        .photo {
-            height: 130%; /* Zoom para focar na máscara e chapéu */
-            width: auto;
-            object-fit: cover;
-            /* Foca no lado esquerdo da imagem (onde está a máscara) */
-            object-position: left center; 
-        }
-
-        .ticket {
-            opacity: 0;
-            width: 260px;
-            margin-top: 40px;
-            transition: 2s;
-            cursor: pointer;
-        }
-
-        .reveal { opacity: 1 !important; transform: translate(0, 0) !important; }
-
-        @media (max-width: 768px) {
-            .content { max-width: 100%; text-align: center; }
-            .photo-container { opacity: 0.3 !important; right: -200px; }
-            .title-line { font-size: 35px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tricia Linewberg - Portfolio</title>
+  <meta name="description" content="Tricia Linewberg - Designer portfolio. The grandest show of strategy and design.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Faustina:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="hero-page">
 
-    <section class="hero">
-        <div class="content">
-            <h1 id="line1" class="title-line"></h1>
-            <h1 id="line2" class="title-line"></h1>
-            <h1 id="line3" class="title-line"></h1>
-            <h2 id="subtitle-line" class="subtitle"></h2>
-           <a href="home.html">
-    <img src="admit-one.png" id="ticket" class="ticket" alt="Admit One">
-</a>
-        </div>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 id="line1" class="hero-title-line"></h1>
+      <h1 id="line2" class="hero-title-line"></h1>
+      <h1 id="line3" class="hero-title-line"></h1>
+      <p id="subtitle" class="hero-subtitle"></p>
+      <a href="portfolio.html" id="admit-btn" class="admit-one-btn">
+        <img src="assets/admit-one.png" alt="Admit One - Enter Portfolio">
+      </a>
+    </div>
 
-        <div id="photo" class="photo-container">
-            <img src="tricia.png" class="photo" alt="Trícia">
-        </div>
-    </section>
+    <div id="hero-photo" class="hero-photo">
+      <img src="assets/tricia.png" alt="Tricia Linewberg">
+    </div>
+  </section>
 
-    <script>
-        async function typeWords(elementId, text, speed) {
-            const element = document.getElementById(elementId);
-            const words = text.split(" ");
-            for (let wordText of words) {
-                const span = document.createElement("span");
-                span.textContent = wordText;
-                span.className = "word";
-                element.appendChild(span);
-                await new Promise(res => setTimeout(res, 50));
-                span.classList.add("visible");
-                await new Promise(res => setTimeout(res, speed));
-            }
-        }
+  <script>
+    async function typeWords(elementId, text, speed) {
+      const el = document.getElementById(elementId);
+      const words = text.split(' ');
+      for (const w of words) {
+        const span = document.createElement('span');
+        span.textContent = w;
+        span.className = 'word';
+        el.appendChild(span);
+        await new Promise(r => setTimeout(r, 50));
+        span.classList.add('visible');
+        await new Promise(r => setTimeout(r, speed));
+      }
+    }
 
-        window.onload = async () => {
-            await typeWords("line1", "WELCOME,", 600);
-            await typeWords("line2", "WELCOME TO MY", 400);
-            await typeWords("line3", "PORTFOLIO", 600);
-            await new Promise(res => setTimeout(res, 300));
-            await typeWords("subtitle-line", "THE GRANDEST SHOW OF STRATEGY AND DESIGN ON LAND OR BY SCREEN.", 150);
-            
-            // Revela a Foto e o Ticket
-            setTimeout(() => {
-                document.getElementById("photo").classList.add("reveal");
-                document.getElementById("ticket").classList.add("reveal");
-            }, 500);
-        };
-    </script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      await typeWords('line1', 'WELCOME,', 500);
+      await typeWords('line2', 'WELCOME TO', 350);
+      await typeWords('line3', 'MY PORTFOLIO!', 500);
+      await new Promise(r => setTimeout(r, 200));
+      await typeWords('subtitle', 'The grandest show of strategy and design on land or by screen.', 120);
+
+      setTimeout(() => {
+        document.getElementById('hero-photo').classList.add('reveal');
+      }, 400);
+
+      setTimeout(() => {
+        const btn = document.getElementById('admit-btn');
+        btn.classList.add('reveal');
+        setTimeout(() => btn.classList.add('breathing'), 1500);
+      }, 1200);
+    });
+  </script>
 </body>
 </html>
